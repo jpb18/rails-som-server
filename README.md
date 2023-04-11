@@ -1,25 +1,45 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Rails Som Server
 
-Things you may want to cover:
+This is the source code related to the article in the following link.
 
-* Ruby version
+[put link here after publishing]
 
-* System dependencies
+# Requirements
 
-* Configuration
+* Ruby 3.1.2
 
-* Database creation
+* Python 3.11.2
 
-* Database initialization
+* pip 23.0.1
 
-* How to run the test suite
+# Instalation:
 
-* Services (job queues, cache servers, search engines, etc.)
+Install the Python dependencies that we require:
 
-* Deployment instructions
+```
+pip install -U pip
+pip install -U numpy
+pip install -U scipy
+pip install -U scikit-learn
+pip install -U sklearn-som
+```
 
-* ...
-# rails-som-server
+Run `bundle install` and then start the server with `rails s`
+
+# Scheduling
+
+The rails gem "whenever" handles the job scheduling. To update the time interval go to `config/schedule.rb` and update the time interval in the following block:
+
+```
+every 1.hour do
+  rake 'jobs:execute_som'
+end
+```
+
+After that run:
+```
+bundle exec whenever --update-crontab
+```
+
