@@ -5,7 +5,9 @@ class SelfOrganizingMapsController < ApplicationController
   end
 
   def show
-    render json: Map.find(params[:id])
+    map = Map.find(params[:id])
+
+    render json: map
   end
 
   def create
@@ -30,6 +32,18 @@ class SelfOrganizingMapsController < ApplicationController
     end
   end
 
+  def predictions
+    map = Map.find(params[:id])
+
+    service = PredictDatapointClass.new(map, prediction_params).call!
+
+    if service.success
+      render json: service.predictions
+    elsif
+      render status: :unprocessable_entity
+    end
+  end
+
   private
 
   def map_params
@@ -38,6 +52,10 @@ class SelfOrganizingMapsController < ApplicationController
 
   def data_point_params
     params.require(:datapoints).permit(points: [:label, value: []])
+  end
+
+  def prediction_params
+    params.require(:predictions)
   end
 
   # this would better be going to a service, but to simplify, it'll be a method

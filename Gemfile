@@ -6,6 +6,7 @@ ruby "3.1.2"
 gem "pycall", "~> 1.4.2"
 gem 'pry', '~> 0.13.1'
 gem 'whenever', require: false
+gem 'active_model_serializers'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
