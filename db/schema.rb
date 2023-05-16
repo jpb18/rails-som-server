@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_05_163446) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_15_084805) do
   create_table "maps", force: :cascade do |t|
     t.integer "feature_number"
     t.integer "width"
@@ -18,6 +18,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_163446) do
     t.json "map_state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.binary "serialized_map"
+    t.integer "epochs", default: 1
+    t.float "learning_rate", default: 1.0
+    t.float "sigma", default: 1.0
+    t.integer "max_iter", default: 3000
   end
 
   create_table "sample_data_entries", force: :cascade do |t|

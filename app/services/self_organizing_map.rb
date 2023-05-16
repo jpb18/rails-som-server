@@ -9,7 +9,10 @@ class SelfOrganizingMap
     @height = options[:height] || 20
     @epochs = options[:epochs] || 1
     @shuffle = options[:shuffle] || false
-    @som = SOM.new(m: @height, n: @width, dim: features)
+    learning_rate = options[:learning_rate] || 1.0
+    sigma = options[:sigma] || 1.0
+    max_iter = options[:max_iter] || 3000
+    @som = SOM.new(m: @height, n: @width, dim: features, lr: learning_rate, sigma: sigma, max_iter: max_iter)
   end
 
   def call!
